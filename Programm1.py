@@ -34,7 +34,7 @@ def click(): #Функция отвечающая за клик
     global a, e
     a += e
     label1["text"] = a
-    label2["text"] = f"AutoClick - {d} ( +{b} ); Click - {g}( +{e} )"
+    label2["text"] = f"AutoClick - {d} ( +{b} ); Click - {g}( +{e} )" #Обновление информации о доходе
 def updk():
     global a, e, f, g
     if a >= f:
