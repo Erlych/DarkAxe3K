@@ -1,7 +1,11 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter.messagebox import askyesno, showinfo
 import time
 import threading
+
+from pyexpat.errors import messages
+
 #Ввод библиотек
 
 #Ввод переменных
@@ -12,6 +16,23 @@ d = 0  #Количество обновлений автоклика
 e = 1  #На сколько прибавляется(клик)
 f = 50 #Цена за обновление клика
 g = 1  #Количество обновлений клика
+
+
+class Options(Tk):
+    def __init__(options):
+        super().__init__()
+
+        options.title("Window options")
+        options.geometry("400x900")
+        options.attributes("-alpha", 0.7)
+
+        exit = ttk.Button(options, text="Exit", command=options.ext)
+        exit.pack(anchor=NE)
+    def ext(options):
+        print("Закрытие окна настроек")
+        options.destroy()
+
+
 def num():  #Функция по автоматическому прибавлению очков
     global a, d
     while True:
@@ -20,7 +41,8 @@ def num():  #Функция по автоматическому прибавле
             a += b #Прибаление очков
             label1["text"] = a #Изменение текста на счётчике
 def exit():  #Функция для выхода
-    root.destroy()
+    result = askyesno(title="Подтверждение выхода", message="Точно выйти?")
+    if result: print("Выход"); root.destroy()
 def update():#Функция отвечающая за обновления
     global a, b, c, d
     if a >= c:
@@ -44,6 +66,9 @@ def updk():
         g += 1
         Button3["text"] = f"Update(click) - {f}"
         label1["text"] = a  # Изменение текста на счётчике
+def opt():
+    Options()
+    print("Открытие окна настроек")
 
 thread = threading.Thread(target=num, daemon=True)
 thread.start() #Автоматическое параллельное прибавление очков(включение парралельности)
@@ -52,12 +77,14 @@ root = Tk()
 root.attributes("-fullscreen", True)  #Включение полного экрана
 root.attributes("-alpha", 0.5)   #Полупрозрачность окна
 
-root.title("AxeDarkEpstein")     #Название окна
+root.title("Dark Axe 3K")     #Название окна
 icon = PhotoImage(file="img.png")#Переменная иконки окна
 root.iconphoto(True, icon)#Подключение иконки окна
 
 exitB = ttk.Button(text="Exit", command=exit)
 exitB.pack(anchor="ne")#Добавление кнопки выхода(+расположение)
+Button4 = ttk.Button(text="Options", command=opt)
+Button4.pack(anchor=NE)#Добавление кнопки настроек
 label1 = ttk.Label(text=a)
 label1.place(relx=.5, rely=.5, anchor="center")#Добавление счётчика очков(+расположение)
 Button1 = ttk.Button(text=f"Buy autoclick!!( {c} )", command=update)
