@@ -18,18 +18,29 @@ f = 50 #Цена за обновление клика
 g = 1  #Количество обновлений клика
 
 
-class Options(Tk):
+class Options(Toplevel):
+
+
     def __init__(options):
         super().__init__()
 
         options.title("Window options")
         options.geometry("400x900")
         options.attributes("-alpha", 0.7)
+        options.grab_set()
 
-        exit = ttk.Button(options, text="Exit", command=options.ext)
-        exit.pack(anchor=NE)
+        ttk.Button(options, text="Exit", command=options.ext).pack(anchor=NE)
+        ttk.Button(options, text=f"Fullscreen {"On" if root.attributes("-fullscreen") else "Off"}", command=options.flscrn).pack(anchor=NW)
+
+    def flscrn(options):
+        if root.attributes("-fullscreen"):
+            root.attributes("-fullscreen", False)
+        else:
+            root.attributes("-fullscreen", True)
+
     def ext(options):
         print("Закрытие окна настроек")
+        options.grab_release()
         options.destroy()
 
 
@@ -74,8 +85,9 @@ thread = threading.Thread(target=num, daemon=True)
 thread.start() #Автоматическое параллельное прибавление очков(включение парралельности)
 
 root = Tk()
+root.minsize(1000,500)
 root.attributes("-fullscreen", True)  #Включение полного экрана
-root.attributes("-alpha", 0.5)   #Полупрозрачность окна
+root.attributes("-alpha", 1)   #Полупрозрачность окна
 
 root.title("Dark Axe 3K")     #Название окна
 icon = PhotoImage(file="img.png")#Переменная иконки окна
