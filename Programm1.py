@@ -33,7 +33,7 @@ class Options(Toplevel):
 
         ttk.Button(options, text="Exit", command=options.ext).pack(anchor=NE)
         ttk.Button(options, text=f"Fullscreen {"On" if root.attributes("-fullscreen") else "Off"}", command=options.flscrn).pack(anchor=NW)
-        scale = ttk.Scale(options, orient=HORIZONTAL,length=100, from_=0.1, to=1.0, value=root.val, command=options.alfa)
+        scale = ttk.Scale(options, orient=HORIZONTAL,length=100, from_=0.1, to=1.0, value=newVal, command=options.alfa)
         scale.pack(anchor=NW)
         threading.Thread(target=options.alfa, daemon=True).start()  # Автоматическое изменение прозрачности окна
 
