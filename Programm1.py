@@ -21,7 +21,6 @@ j = 0  #Количество обновлений времени
 
 class Options(Toplevel):
 
-
     def __init__(options):
         super().__init__()
 
@@ -30,9 +29,17 @@ class Options(Toplevel):
         options.attributes("-alpha", 0.7)
         options.grab_set()
 
+        newVal = 1
+
         ttk.Button(options, text="Exit", command=options.ext).pack(anchor=NE)
         ttk.Button(options, text=f"Fullscreen {"On" if root.attributes("-fullscreen") else "Off"}", command=options.flscrn).pack(anchor=NW)
+        scale = ttk.Scale(options, orient=HORIZONTAL,length=100, from_=0.1, to=1.0, value=root.val, command=options.alfa)
+        scale.pack(anchor=NW)
+        threading.Thread(target=options.alfa, daemon=True).start()  # Автоматическое изменение прозрачности окна
 
+    def alfa(options, newVal):
+        root.val = newVal
+        root.attributes("-alpha", root.val)
     def flscrn(options):
         if root.attributes("-fullscreen"):
             root.attributes("-fullscreen", False)
@@ -45,6 +52,7 @@ class Options(Toplevel):
         options.destroy()
 
 
+
 def num():  #Функция по автоматическому прибавлению очков
     global a, d, h
     while True:
@@ -52,9 +60,11 @@ def num():  #Функция по автоматическому прибавле
             time.sleep(h/10)
             a += b #Прибаление очков
             label1["text"] = a #Изменение текста на счётчике
+
 def exit():  #Функция для выхода
     result = askyesno(title="Подтверждение выхода", message="Точно выйти?")
     if result: print("Выход"); root.destroy()
+
 def update():#Функция отвечающая за обновления
     global a, b, c, d
     if a >= c:
@@ -64,11 +74,13 @@ def update():#Функция отвечающая за обновления
         c *= 2 #Увеличение цены
         Button1["text"] = f"Update(autoclick) - {c}" #Изменение текста на кнопке обновления
         label1["text"] = a  # Изменение текста на счётчике
+
 def click(): #Функция отвечающая за клик
     global a, e
     a += e
     label1["text"] = a
     label2["text"] = f"AutoClick - {d} ( +{b}; {h/10}sec ); Click - {g}( +{e} )" #Обновление информации о доходе
+
 def updk():
     global a, e, f, g
     if a >= f:
@@ -78,6 +90,7 @@ def updk():
         g += 1
         Button3["text"] = f"Update(click) - {f}"
         label1["text"] = a  # Изменение текста на счётчике
+
 def updt():
     global a, h, i, j, b
     if a >= i:
@@ -91,6 +104,7 @@ def updt():
         j += 1
         label1["text"] = a
         Button4["text"] = f"Update time autoclick - {i}"
+
 def opt():
     Options()
     print("Открытие окна настроек")
@@ -98,10 +112,12 @@ def opt():
 thread = threading.Thread(target=num, daemon=True)
 thread.start() #Автоматическое параллельное прибавление очков(включение парралельности)
 
+val = 1
+
 root = Tk()
 root.minsize(1000,500)
 root.attributes("-fullscreen", True)  #Включение полного экрана
-root.attributes("-alpha", 1)   #Полупрозрачность окна
+root.attributes("-alpha", val)   #Полупрозрачность окна
 
 root.title("Dark Axe 3K")     #Название окна
 icon = PhotoImage(file="img.png")#Переменная иконки окна
