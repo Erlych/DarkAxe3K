@@ -3,9 +3,7 @@ from tkinter import ttk
 from tkinter.messagebox import askyesno, showinfo
 import time
 import threading
-
 from pyexpat.errors import messages
-
 #Ввод библиотек
 
 #Ввод переменных
