@@ -29,17 +29,14 @@ class Options(Toplevel):
         options.attributes("-alpha", 0.7)
         options.grab_set()
 
-        newVal = 1
-
         ttk.Button(options, text="Exit", command=options.ext).pack(anchor=NE)
         ttk.Button(options, text=f"Fullscreen {"On" if root.attributes("-fullscreen") else "Off"}", command=options.flscrn).pack(anchor=NW)
-        scale = ttk.Scale(options, orient=HORIZONTAL,length=100, from_=0.1, to=1.0, value=newVal, command=options.alfa)
+        scale = ttk.Scale(options, orient=HORIZONTAL,length=100, from_=0.1, to=1.0, value=val, command=options.alfa)
         scale.pack(anchor=NW)
-        threading.Thread(target=options.alfa, daemon=True).start()  # Автоматическое изменение прозрачности окна
 
     def alfa(options, newVal):
-        root.val = newVal
-        root.attributes("-alpha", root.val)
+        val = newVal
+        root.attributes("-alpha", val)
     def flscrn(options):
         if root.attributes("-fullscreen"):
             root.attributes("-fullscreen", False)
@@ -86,7 +83,7 @@ def updk():
     if a >= f:
         a -= f
         e += 1
-        f *= 2
+        f += 50
         g += 1
         Button3["text"] = f"Update(click) - {f}"
         label1["text"] = a  # Изменение текста на счётчике
