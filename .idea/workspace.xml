@@ -44,17 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Program1.executor": "Run",
-    "Python.Programm1 (1).executor": "Run",
-    "Python.Programm1.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/ПК/PycharmProjects/DarkAxe3K/img.png",
-    "two.files.diff.last.used.file": "C:/Users/ПК/PycharmProjects/DarkAxe3K/img.png"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Program1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Programm1 (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.Programm1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ПК/PycharmProjects/DarkAxe3K/img.png&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/ПК/PycharmProjects/DarkAxe3K/img.png&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.Programm1 (1)">
     <configuration name="Program1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DarkAxe3K" />
@@ -186,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777203609553</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1">
+      <option name="closed" value="true" />
+      <created>1777210206144</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1777210206144</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
